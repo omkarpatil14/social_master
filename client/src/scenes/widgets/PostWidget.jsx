@@ -1,16 +1,18 @@
-import {
+  import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+
+import { Box, Divider, IconButton, Input, Typography, useTheme , InputBase, Button} from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+
 
 const PostWidget = ({
   postId,
@@ -25,6 +27,7 @@ const PostWidget = ({
 }) => {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
+  const[comment,setComment]= useState("");
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
@@ -88,13 +91,41 @@ const PostWidget = ({
           </FlexBetween>
         </FlexBetween>
 
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
+        
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">
-          {comments.map((comment, i) => (
+          
+          
+          
+         <FlexBetween sx={{gap:"0.5rem"}} >
+         <InputBase
+          placeholder="comment..."
+          onChange={(e)=> setComment(e.target.value)}
+          value={comment}
+         
+          sx={{
+            width: "80%",
+            height:"50%",
+            backgroundColor: palette.neutral.light,
+            borderRadius: "2rem",
+            padding: "1rem 1rem",
+            m:"0.5rem"
+          }}
+        />
+        <Button
+        sx={{
+          color: palette.background.alt,
+          backgroundColor: palette.primary.main,
+          borderRadius: "3rem",
+        }}
+        >
+          post
+        </Button>
+
+         </FlexBetween>
+         <Divider/>
+         {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
               <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
@@ -102,7 +133,6 @@ const PostWidget = ({
               </Typography>
             </Box>
           ))}
-          <Divider />
         </Box>
       )}
     </WidgetWrapper>

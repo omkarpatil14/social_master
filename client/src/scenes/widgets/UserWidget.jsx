@@ -3,6 +3,7 @@ import {
   EditOutlined,
   LocationOnOutlined,
   WorkOutlineOutlined,
+  
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
 import UserImage from "components/UserImage";
@@ -10,9 +11,13 @@ import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
+
 const UserWidget = ({ userId, picturePath }) => {
+  const theme = useTheme();
+  const primaryLight = theme.palette.primary.light;
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -20,7 +25,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-
+  
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
       method: "GET",
@@ -43,8 +48,8 @@ const UserWidget = ({ userId, picturePath }) => {
     lastName,
     location,
     occupation,
-    viewedProfile,
-    impressions,
+    linkedIn,
+    Twitter,
     friends,
   } = user;
 
@@ -65,7 +70,7 @@ const UserWidget = ({ userId, picturePath }) => {
               fontWeight="500"
               sx={{
                 "&:hover": {
-                  color: palette.primary.light,
+                  color: palette.primary.dark,
                   cursor: "pointer",
                 },
               }}
@@ -75,7 +80,7 @@ const UserWidget = ({ userId, picturePath }) => {
             <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
-        <ManageAccountsOutlined />
+        <ManageAccountsOutlined  />
       </FlexBetween>
 
       <Divider />
@@ -98,35 +103,37 @@ const UserWidget = ({ userId, picturePath }) => {
 
       {/* FOURTH ROW */}
       <Box p="1rem 0">
-        <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
+        <Typography fontSize="1rem"  fontWeight="500" mb="1rem" color={palette.primary.dark} >
           Social Profiles
         </Typography>
 
-        <FlexBetween gap="1rem" mb="0.5rem">
-          <FlexBetween gap="1rem">
-            <img src="../assets/twitter.png" alt="twitter" />
-            <Box>
-              <Typography color={main} fontWeight="500">
-                Twitter
-              </Typography>
-              <Typography color={medium}>Social Network</Typography>
-            </Box>
-          </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
-        </FlexBetween>
-
+        {Twitter && <a href={Twitter}>
+  <FlexBetween gap="1rem" mb="0.5rem">
+    <FlexBetween gap="1rem">
+      <img src="../assets/twitter.png" alt="twitter" />
+      <Box>
+        <Typography color={main} fontWeight="500">
+          Twitter
+        </Typography>
+        <Typography color={medium}>Social Network</Typography>
+      </Box>
+    </FlexBetween>
+  </FlexBetween>
+</a>}
+{linkedIn &&<a href={linkedIn}>
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
             <img src="../assets/linkedin.png" alt="linkedin" />
             <Box>
               <Typography color={main} fontWeight="500">
-                Linkedin
+                linkedIn
               </Typography>
               <Typography color={medium}>Network Platform</Typography>
             </Box>
           </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
+        
         </FlexBetween>
+        </a>}
       </Box>
     </WidgetWrapper>
   );

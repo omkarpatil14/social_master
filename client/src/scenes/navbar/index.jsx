@@ -51,12 +51,12 @@ const Navbar = () => {
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
-              color: primaryLight,
+              
               cursor: "pointer",
             },
           }}
         >
-          Sociopedia
+          SillySphere
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween

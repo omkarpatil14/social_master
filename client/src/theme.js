@@ -16,18 +16,43 @@ export const colorTokens = {
     1000: "#000000",
   },
   primary: {
-    50: "#E6FBFF",
-    100: "#CCF7FE",
-    200: "#99EEFD",
-    300: "#66E6FC",
-    400: "#33DDFB",
-    500: "#00D5FA",
-    600: "#00A0BC",
-    700: "#006B7D",
-    800: "#00353F",
-    900: "#001519",
+    50: "#E0FFA3",
+    100: "#B3FF5C",
+    200: "#99FF33",
+    300: "#80FF00",
+    400: "#66CC00",
+    500: "#4D9900",
+    600: "#336600",
+    700: "#1A3300",
+    800: "#001900",
+    900: "#000D00",
+  },
+   secondary: {
+    50: "#E6FFFA",
+    100: "#B3FFD9",
+    200: "#80FFC2",
+    300: "#4DFFAD",
+    400: "#1AFF96",
+    500: "#00E6B8",
+    600: "#00B386",
+    700: "#008F5C",
+    800: "#00663A",
+    900: "#004D2A",
+  },
+  accent: {
+    50: "#FFFFFF",
+    100: "#FFFFFF",
+    200: "#FFFFFF",
+    300: "#FFFFFF",
+    400: "#FFFFFF",
+    500: "#F6F6F6", // Light Gray
+    600: "#C2C2C2",
+    700: "#858585",
+    800: "#4D4D4D",
+    900: "#1A1A1A",
   },
 };
+
 
 // mui theme settings
 export const themeSettings = (mode) => {
@@ -57,20 +82,20 @@ export const themeSettings = (mode) => {
         : {
             // palette values for light mode
             primary: {
-              dark: colorTokens.primary[700],
-              main: colorTokens.primary[500],
-              light: colorTokens.primary[50],
+              dark: colorTokens.secondary[500],
+              main: colorTokens.secondary[500],
+              light: colorTokens.secondary[50],
             },
             neutral: {
               dark: colorTokens.grey[700],
               main: colorTokens.grey[500],
               mediumMain: colorTokens.grey[400],
               medium: colorTokens.grey[300],
-              light: colorTokens.grey[50],
+              light: colorTokens.grey[200],
             },
             background: {
-              default: colorTokens.grey[10],
-              alt: colorTokens.grey[0],
+              default: colorTokens.grey[100],
+              alt: colorTokens.grey[50],
             },
           }),
     },

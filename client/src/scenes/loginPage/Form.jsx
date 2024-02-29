@@ -174,15 +174,27 @@ const Form = () => {
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
-                  label="Occupation"
+                  label="Twitter"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.occupation}
-                  name="occupation"
+                  value={values.Twitter}
+                  name="Twitter"
                   error={
-                    Boolean(touched.occupation) && Boolean(errors.occupation)
+                    Boolean(touched.Twitter) && Boolean(errors.Twitter)
                   }
-                  helperText={touched.occupation && errors.occupation}
+                  helperText={touched.Twitter && errors.Twitter}
+                  sx={{ gridColumn: "span 4" }}
+                />
+                <TextField
+                  label="linkedIn"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.linkedIn}
+                  name="linkedIn"
+                  error={
+                    Boolean(touched.linkedIn) && Boolean(errors.linkedIn)
+                  }
+                  helperText={touched.linkedIn && errors.linkedIn}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <Box

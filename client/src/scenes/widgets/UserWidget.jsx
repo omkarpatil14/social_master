@@ -10,9 +10,10 @@ import UserImage from "components/UserImage";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState  } from "react";
 
 import { useNavigate } from "react-router-dom";
+
 
 
 const UserWidget = ({ userId, picturePath }) => {
@@ -22,9 +23,14 @@ const UserWidget = ({ userId, picturePath }) => {
   const { palette } = useTheme();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
+  const friendListLength= useSelector((state)=>state.friendsLength)
+
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
+
+
+  
   
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
@@ -38,6 +44,8 @@ const UserWidget = ({ userId, picturePath }) => {
   useEffect(() => {
     getUser();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  
 
   if (!user) {
     return null;
@@ -77,7 +85,7 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>{friendListLength} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined  />
